@@ -47,4 +47,22 @@ public class PeopleTest {
         // Assert
         Assert.assertTrue(expected == actual);
     }
+
+    @Test
+    public void iterationTest(){
+        // Given
+        Integer count = 0;
+        People people = new People();
+        people.add(new Person());
+        people.add(new Person());
+        people.add(new Person());
+        // When
+        for(Person p : people){
+            count += 1;
+        }
+        // Assert
+        System.out.println(count);
+        Assert.assertTrue(count == 3);
+
+    }
 }
