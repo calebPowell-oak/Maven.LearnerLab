@@ -37,5 +37,8 @@ public final class Students extends People {
         INSTANCE.add(new Person(28l, "x"));
     }
 
+    public static Students getInstance(){
+        return INSTANCE;
+    }
 
 }
