@@ -9,6 +9,11 @@ public class Person {
         this.name = name;
     }
 
+    public Person() {
+        id = null;
+        name = null;
+    }
+
     public void setName(String name) {
         this.name = name;
     }

@@ -24,7 +24,7 @@ public class StudentTest {
         anish.learn(hoursToStudy);
         double actual = anish.getTotalStudyTime();
         // Assert
-        Assert.assertEquals(beforeLearning + hoursToStudy, actual);
+        Assert.assertEquals(beforeLearning + hoursToStudy, actual, 0.0001);
     }
 
     @Test
