@@ -17,4 +17,14 @@ public class StudentsTest {
         // Assert
         Assert.assertTrue(actual);
     }
+
+    @Test
+    public void singletonTestForClassmates2(){
+        // Given
+        Person expected = Students.getInstance().findById(1l);
+        // When
+        Boolean actual = Students.getInstance().contains(expected);
+        // Assert
+        Assert.assertTrue(actual);
+    }
 }

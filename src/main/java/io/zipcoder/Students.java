@@ -1,11 +1,20 @@
 package io.zipcoder;
 
-import io.zipcoder.interfaces.Person;
-
 public final class Students extends People {
-    private static final Students INSTANCE = new Students();
+    private static Students INSTANCE;
 
-    private Students(){
+    public static Students getInstance() {
+        if(INSTANCE == null){
+            INSTANCE = new Students();
+            populate();
+        }
+        return INSTANCE;
+    }
+
+    private Students() {
+    }
+
+    private static void populate(){
         INSTANCE.add(new Student(0l, "Anish"));
         INSTANCE.add(new Student(1l, "Caleb"));
         INSTANCE.add(new Student(2l, "Robert"));
@@ -36,9 +45,4 @@ public final class Students extends People {
         INSTANCE.add(new Student(27l, "Reese"));
         INSTANCE.add(new Student(28l, "x"));
     }
-
-    public static Students getInstance(){
-        return INSTANCE;
-    }
-
 }
