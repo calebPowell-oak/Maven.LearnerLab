@@ -1,6 +1,7 @@
 package io.zipcoder;
 
 import io.zipcoder.Interfaces.Learner;
+import io.zipcoder.Interfaces.Teacher;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +23,11 @@ public class ZipCodeWilmington {
     }
 
     public void hostLecture(Long id, Double hours){
-        ((Instructor)instructors.findById(id)).lecture((Learner[])students.toArray(), hours);
+        Student[] s = new Student[students.count()];
+        for(int i = 0; i < students.count(); i++){
+            s[i] = (Student)students.toArray()[i];
+        }
+        ((Instructor)instructors.findById(id)).lecture(s, hours);
     }
 
     public Map<Student, Double> getStudyMap(){

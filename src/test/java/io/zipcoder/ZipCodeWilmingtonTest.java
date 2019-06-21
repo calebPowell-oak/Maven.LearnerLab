@@ -11,14 +11,12 @@ public class ZipCodeWilmingtonTest {
         // Given
         ZipCodeWilmington cohort = ZipCodeWilmington.getINSTANCE();
         Students students = Students.getInstance();
-        Map<Student, Double> studyMap = cohort.getStudyMap();
+        Double prior = ((Student)students.findById(0l)).getTotalStudyTime();
         Double hours = 100d;
-        Double prior = studyMap.get(students.findById(0l));
         // When
         cohort.hostLecture(50l, hours);
-        Double post = studyMap.get(students.findById(0l));
+        Double post = ((Student)students.findById(0l)).getTotalStudyTime();
         // Assert
         Assert.assertTrue(post > prior);
-
     }
 }
