@@ -5,15 +5,15 @@ import com.sun.deploy.perf.PerfRollup;
 import java.util.ArrayList;
 import java.util.List;
 
-public class People {
-    private List<Person> personList = new ArrayList<Person>();
+public abstract class People<E extends Person>{
+    private List<E> personList = new ArrayList<E>();
 
-    public void add(Person p){
+    public void add(E p){
         personList.add(p);
     }
 
-    public Person findById(Long id){
-        for(Person p : personList){
+    public E findById(Long id){
+        for(E p : personList){
             if(id.equals(p.getId())){
                 return p;
             }
@@ -30,7 +30,7 @@ public class People {
     }
 
     public void remove(Long id){
-        for(Person p : personList){
+        for(E p : personList){
             if(id.equals(p.getId())){
                 personList.remove(p);
                 return;
@@ -46,7 +46,9 @@ public class People {
         return personList.size();
     }
 
-    public Person[] toArray(){
-        return personList.toArray(new Person[personList.size()]);
+    public List<E> getPersonList(){
+        return personList;
     }
+
+    public abstract E[] toArray();
 }

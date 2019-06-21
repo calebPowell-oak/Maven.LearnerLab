@@ -1,6 +1,6 @@
 package io.zipcoder;
 
-public final class Students extends People {
+public final class Students extends People<Student> {
     private static final Students INSTANCE = new Students();
 
     static {
@@ -14,5 +14,9 @@ public final class Students extends People {
 
     public static Students getInstance(){
         return INSTANCE;
+    }
+
+    public Student[] toArray() {
+        return this.getPersonList().toArray(new Student[count()]);
     }
 }

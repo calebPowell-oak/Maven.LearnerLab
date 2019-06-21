@@ -10,10 +10,10 @@ public class PeopleTest {
     @Test
     public void add() {
         // Given
-        People p = new People();
+        People<Student> p = Students.getInstance();
         Integer prior = p.count();
         // When
-        p.add(Person.randomPerson());
+        p.add(new Student(Person.randomPerson()));
         Integer post = p.count();
         // Assert
         Assert.assertTrue(post > prior);
@@ -23,8 +23,8 @@ public class PeopleTest {
     @Test
     public void findById() {
         // Given
-        People p = new People();
-        Person expected = Person.randomPerson();
+        People<Student> p = Students.getInstance();
+        Student expected = new Student(Person.randomPerson());
         p.add(expected);
         Long id = expected.getId();
         // When
@@ -36,13 +36,14 @@ public class PeopleTest {
     @Test
     public void remove() {
         // Given
-        People p = new People();
-        Person person = Person.randomPerson();
-        p.add(person);
+        People<Student> p = Students.getInstance();
+        Student expected = new Student(Person.randomPerson());
+        Integer prior = p.count();
+        p.add(expected);
         // When
-        p.remove(person);
+        p.remove(expected);
         Integer post = p.count();
         // Assert
-        Assert.assertTrue(post == 0);
+        Assert.assertTrue(post == prior);
     }
 }

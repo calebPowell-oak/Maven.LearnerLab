@@ -20,4 +20,10 @@ public class InstructorsTest {
         // Assert
         Assert.assertTrue(containsDolio && containsKris && containsWilhem && containsFroilan);
     }
+
+    @Test
+    public void testInstructorsSingleton2(){
+        People<Student> p = Students.getInstance();
+        System.out.println(p.toArray().toString());
+    }
 }
