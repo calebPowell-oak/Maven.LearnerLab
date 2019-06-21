@@ -12,7 +12,7 @@ public final class Students extends People {
     private Students(){
     }
 
-    public Students getInstance(){
+    public static Students getInstance(){
         return INSTANCE;
     }
 }
