@@ -6,8 +6,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ZipCodeWilmington {
+    private static final ZipCodeWilmington INSTANCE = new ZipCodeWilmington();
     private final Students students = Students.getInstance();
     private final Instructors instructors = Instructors.getInstance();
+
+    private ZipCodeWilmington(){
+    }
+
+    public static ZipCodeWilmington getINSTANCE(){
+        return INSTANCE;
+    }
 
     public void hostLecture(Instructor teacher, Double hours){
         teacher.lecture((Learner[]) students.toArray(), hours);
