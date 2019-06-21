@@ -19,23 +19,19 @@ public class ZipCodeWilmington {
     }
 
     public void hostLecture(Instructor teacher, Double hours){
-        teacher.lecture((Learner[]) students.toArray(), hours);
+        instructors.findById(50l).lecture(students.toArray(), hours);
     }
 
     public void hostLecture(Long id, Double hours){
-        Student[] s = new Student[students.count()];
-        for(int i = 0; i < students.count(); i++){
-            s[i] = (Student)students.toArray()[i];
-        }
-        ((Instructor)instructors.findById(id)).lecture(s, hours);
+        instructors.findById(id).lecture(students.toArray(), hours);
     }
 
     public Map<Student, Double> getStudyMap(){
-        Map<Student, Double> map = new HashMap<Student, Double>();
-        for(Person student : students.toArray()){
-            map.put((Student) student, ((Learner)student).getTotalStudyTime());
+        Map<Student, Double> studyMap = new HashMap<Student, Double>();
+        for(Student s : students.toArray()){
+            studyMap.put(s, s.getTotalStudyTime());
         }
-        return map;
+        return studyMap;
     }
 
 }
