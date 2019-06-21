@@ -11,20 +11,27 @@ public class StudentsTest {
     @Test
     public void singletonTestForClassmates(){
         // Given
-        Person expected = Students.getInstance().findById(0l);
         // When
-        Boolean actual = Students.getInstance().contains(expected);
+        Person actual = Students.getInstance().findById(0l);
         // Assert
-        Assert.assertTrue(actual);
+        Assert.assertEquals("Anish", actual.getName());
     }
 
     @Test
     public void singletonTestForClassmates2(){
         // Given
-        Person expected = Students.getInstance().findById(1l);
         // When
-        Boolean actual = Students.getInstance().contains(expected);
+        Person actual = Students.getInstance().findById(1l);
         // Assert
-        Assert.assertTrue(actual);
+        Assert.assertEquals("Caleb", actual.getName());
+    }
+
+    @Test
+    public void singletonTestForClassmates3(){
+        // Given
+        // When
+        Person actual = Students.getInstance().findById(28l);
+        // Assert
+        Assert.assertEquals("x", actual.getName());
     }
 }
