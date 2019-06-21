@@ -1,7 +1,5 @@
 package io.zipcoder;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import io.zipcoder.interfaces.Person;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,57 +10,40 @@ public class PeopleTest {
     @Test
     public void add() {
         // Given
-        People people = new People();
-        Person dude = new Person(null, null);
+        People<Student> p = Students.getInstance();
+        Integer prior = p.count();
         // When
-        people.add(dude);
-        Boolean actual = people.contains(dude);
+        p.add(new Student(Person.randomPerson()));
+        Integer post = p.count();
         // Assert
-        Assert.assertTrue(actual);
-    }
+        Assert.assertTrue(post > prior);
 
-    @Test
-    public void remove() {
-        // Given
-        Integer expectedCount = 0;
-        People people = new People();
-        Person chap = new Person(null, null);
-        people.add(chap);
-        // When
-        people.remove(chap);
-        Integer actualCount = people.count();
-        // Assert
-        Assert.assertTrue(expectedCount == actualCount);
     }
 
     @Test
     public void findById() {
         // Given
-        Long id = 1234l;
-        People people = new People();
-        Person expected = new Person(id, null);
-        people.add(expected);
+        People<Student> p = Students.getInstance();
+        Student expected = new Student(Person.randomPerson());
+        p.add(expected);
+        Long id = expected.getId();
         // When
-        Person actual = people.findById(id);
+        Person actual = p.findById(id);
         // Assert
         Assert.assertTrue(expected == actual);
     }
 
     @Test
-    public void iterationTest(){
+    public void remove() {
         // Given
-        Integer count = 0;
-        People people = new People();
-        people.add(new Person());
-        people.add(new Person());
-        people.add(new Person());
+        People<Student> p = Students.getInstance();
+        Student expected = new Student(Person.randomPerson());
+        Integer prior = p.count();
+        p.add(expected);
         // When
-        for(Person p : people){
-            count += 1;
-        }
+        p.remove(expected);
+        Integer post = p.count();
         // Assert
-        System.out.println(count);
-        Assert.assertTrue(count == 3);
-
+        Assert.assertTrue(post == prior);
     }
 }

@@ -1,14 +1,8 @@
 package io.zipcoder;
 
-import io.zipcoder.interfaces.Learner;
-import io.zipcoder.interfaces.Person;
+import io.zipcoder.Interfaces.Learner;
 import org.junit.Assert;
 import org.junit.Test;
-import sun.misc.Cleaner;
-
-import java.sql.Struct;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
@@ -17,22 +11,32 @@ public class StudentTest {
     @Test
     public void learn() {
         // Given
-        Student anish = new Student();
-        double beforeLearning = anish.getTotalStudyTime();
-        double hoursToStudy = 100;
+        Double hours = 100d;
+        Student s = new Student(Person.randomPerson());
+        Double prior = s.getTotalStudyTime();
         // When
-        anish.learn(hoursToStudy);
-        double actual = anish.getTotalStudyTime();
+        s.learn(hours);
+        Double post = s.getTotalStudyTime();
         // Assert
-        Assert.assertEquals(beforeLearning + hoursToStudy, actual, 0.0001);
+        Assert.assertEquals(prior + hours, post, 0.00001);
+    }
+
+    @Test
+    public void getTotalStudyTime() {
+        // Given
+        Student s = new Student(Person.randomPerson());
+        // When
+        Double actual = s.getTotalStudyTime();
+        // Assert
+        Assert.assertEquals(0d, actual, 0.00001);
     }
 
     @Test
     public void testImplementation(){
         // Given
-        Student student = new Student();
+        Student test = new Student(Person.randomPerson());
         // When
-        Boolean actual = student instanceof Learner;
+        Boolean actual = test instanceof Learner;
         // Assert
         Assert.assertTrue(actual);
     }
@@ -40,9 +44,9 @@ public class StudentTest {
     @Test
     public void testInheritance(){
         // Given
-        Student student = new Student();
+        Student test = new Student(Person.randomPerson());
         // When
-        Boolean actual = student instanceof Person;
+        Boolean actual = test instanceof Person;
         // Assert
         Assert.assertTrue(actual);
     }

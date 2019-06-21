@@ -1,37 +1,21 @@
 package io.zipcoder;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import io.zipcoder.interfaces.Person;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class StudentsTest {
     @Test
-    public void singletonTestForClassmates(){
+    public void testStudents(){
         // Given
+        Students students = Students.getInstance();
+        Person caleb = students.findById(0l);
+        Person donna = students.findById(1l);
+        Person robert = students.findById(2l);
         // When
-        Person actual = Students.getInstance().findById(0l);
+        Boolean containsCaleb = students.contains(caleb);
+        Boolean containsDonna = students.contains(donna);
+        Boolean containsRobert = students.contains(robert);
         // Assert
-        Assert.assertEquals("Anish", actual.getName());
-    }
-
-    @Test
-    public void singletonTestForClassmates2(){
-        // Given
-        // When
-        Person actual = Students.getInstance().findById(1l);
-        // Assert
-        Assert.assertEquals("Caleb", actual.getName());
-    }
-
-    @Test
-    public void singletonTestForClassmates3(){
-        // Given
-        // When
-        Person actual = Students.getInstance().findById(28l);
-        // Assert
-        Assert.assertEquals("x", actual.getName());
+        Assert.assertTrue(containsCaleb && containsDonna && containsRobert);
     }
 }

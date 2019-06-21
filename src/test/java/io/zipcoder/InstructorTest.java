@@ -1,11 +1,9 @@
 package io.zipcoder;
 
-import io.zipcoder.interfaces.Person;
-import io.zipcoder.interfaces.Teacher;
+import io.zipcoder.Interfaces.Teacher;
+import org.jcp.xml.dsig.internal.dom.DOMSubTreeData;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -14,42 +12,37 @@ public class InstructorTest {
     @Test
     public void teach() {
         // Given
-        Instructor instructor = new Instructor();
-        Student student = new Student();
-        double hoursToTeach = 100;
-        double hoursBefore = student.getTotalStudyTime();
+        Instructor n = new Instructor(Person.randomPerson());
+        Student s = new Student(Person.randomPerson());
+        Double prior = s.getTotalStudyTime();
+        Double hours = 10d;
         // When
-        instructor.teach(student, hoursToTeach);
-        double actual = student.getTotalStudyTime();
+        n.teach(s, hours);
+        Double post = s.getTotalStudyTime();
         // Assert
-        Assert.assertTrue(hoursBefore + hoursToTeach ==  actual);
+        Assert.assertEquals(prior + hours, post, 0.00001);
     }
 
     @Test
     public void lecture() {
         // Given
-        Instructor instructor = new Instructor();
-        Student student1 = new Student();
-        Student student2 = new Student();
-        Student[] classArr = {student1, student2};
-        double hoursToTeach = 100;
-        ArrayList<Double> totalStudyHours = new ArrayList<Double>();
-        for(Student x : classArr) totalStudyHours.add(x.getTotalStudyTime());
+        Instructor n = new Instructor(Person.randomPerson());
+        Student[] s = {new Student(Person.randomPerson()), new Student(Person.randomPerson()), new Student(Person.randomPerson())};
+        Double prior = s[0].getTotalStudyTime();
+        Double hours = 10d;
         // When
-        instructor.lecture(classArr, hoursToTeach);
-        ArrayList<Double>  totalHoursAfterLecture = new ArrayList<Double>();
-        for(Student x : classArr) totalHoursAfterLecture.add(x.getTotalStudyTime());
+        n.lecture(s, hours);
+        Double post = s[0].getTotalStudyTime();
         // Assert
-        Assert.assertTrue(
-                totalStudyHours.get(0) + hoursToTeach/classArr.length == totalHoursAfterLecture.get(0));
+        Assert.assertEquals(prior + hours/s.length, post, 0.00001);
     }
 
     @Test
     public void testImplementation(){
         // Given
-        Instructor instructor = new Instructor();
+        Instructor n = new Instructor(Person.randomPerson());
         // When
-        Boolean actual = instructor instanceof Teacher;
+        Boolean actual = n instanceof Teacher;
         // Assert
         Assert.assertTrue(actual);
     }
@@ -57,10 +50,11 @@ public class InstructorTest {
     @Test
     public void testInheritance(){
         // Given
-        Instructor instructor = new Instructor();
+        Instructor n = new Instructor(Person.randomPerson());
         // When
-        Boolean actual = instructor instanceof Person;
+        Boolean actual = n instanceof Person;
         // Assert
         Assert.assertTrue(actual);
     }
+
 }

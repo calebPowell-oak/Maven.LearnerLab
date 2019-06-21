@@ -3,16 +3,20 @@ package io.zipcoder;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Map;
+
 public class ZipCodeWilmingtonTest {
     @Test
     public void testHostLecture(){
         // Given
-        Double hours = 200.00;
-        Double before = ((Student)ZipCodeWilmington.getStudents().findById(0l)).getTotalStudyTime();
+        ZipCodeWilmington cohort = ZipCodeWilmington.getINSTANCE();
+        Students students = Students.getInstance();
+        Double prior = ((Student)students.findById(0l)).getTotalStudyTime();
+        Double hours = 100d;
         // When
-        ZipCodeWilmington.hostLecture(50l, hours);
-        Double actual = ((Student)ZipCodeWilmington.getStudents().findById(0l)).getTotalStudyTime();
+        cohort.hostLecture(50l, hours);
+        Double post = ((Student)students.findById(0l)).getTotalStudyTime();
         // Assert
-        Assert.assertEquals(before + hours/ZipCodeWilmington.getStudents().size(), actual, 0.0001);
+        Assert.assertTrue(post > prior);
     }
 }

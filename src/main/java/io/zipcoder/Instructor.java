@@ -1,8 +1,7 @@
 package io.zipcoder;
 
-import io.zipcoder.interfaces.Learner;
-import io.zipcoder.interfaces.Person;
-import io.zipcoder.interfaces.Teacher;
+import io.zipcoder.Interfaces.Learner;
+import io.zipcoder.Interfaces.Teacher;
 
 public class Instructor extends Person implements Teacher {
 
@@ -10,16 +9,17 @@ public class Instructor extends Person implements Teacher {
         super(id, name);
     }
 
-    public Instructor(){
+    public Instructor(Person p){
+        super(p.getId(), p.getName());
     }
 
-    public void teach(Learner learner, double numberOfHours) {
-        learner.learn(numberOfHours);
+    public void teach(Learner learner, Double hours) {
+        learner.learn(hours);
     }
 
-    public void lecture(Learner[] learners, double numberOfHours) {
-        for(Learner s : learners){
-            s.learn(numberOfHours/learners.length);
+    public void lecture(Learner[] learners, Double hours) {
+        for(Learner x : learners){
+            x.learn(hours/learners.length);
         }
     }
 }

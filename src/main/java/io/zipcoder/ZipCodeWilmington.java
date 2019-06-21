@@ -1,38 +1,37 @@
 package io.zipcoder;
 
-import io.zipcoder.interfaces.Learner;
-import io.zipcoder.interfaces.Person;
-import io.zipcoder.interfaces.Teacher;
+import io.zipcoder.Interfaces.Learner;
+import io.zipcoder.Interfaces.Teacher;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class ZipCodeWilmington {
-    private static Students sref = Students.getInstance();
-    private static Instructors iref = Instructors.getInstance();
-    private static Learner[] larr = sref.toArray();
+    private static final ZipCodeWilmington INSTANCE = new ZipCodeWilmington();
+    private final Students students = Students.getInstance();
+    private final Instructors instructors = Instructors.getInstance();
 
-    public static void hostLecture(Teacher teacher, Double numberOfHours){
-        teacher.lecture((Learner[])sref.toArray(), numberOfHours);
+    private ZipCodeWilmington(){
     }
 
-    public static void hostLecture(Long id, Double numberOfHours){
-        ((Instructor)iref.findById(id)).lecture((Learner[])sref.toArray(), numberOfHours);
+    public static ZipCodeWilmington getINSTANCE(){
+        return INSTANCE;
     }
 
-    public static Map<Student, Double> getStudyMap(){
+    public void hostLecture(Instructor teacher, Double hours){
+        instructors.findById(50l).lecture(students.toArray(), hours);
+    }
+
+    public void hostLecture(Long id, Double hours){
+        instructors.findById(id).lecture(students.toArray(), hours);
+    }
+
+    public Map<Student, Double> getStudyMap(){
         Map<Student, Double> studyMap = new HashMap<Student, Double>();
-        for(Person x : sref){
-            studyMap.put((Student)x, ((Student) x).getTotalStudyTime());
+        for(Student s : students.toArray()){
+            studyMap.put(s, s.getTotalStudyTime());
         }
         return studyMap;
     }
 
-    public static Students getStudents(){
-        return sref;
-    }
-
-    public static Instructors getInstructors(){
-        return iref;
-    }
 }

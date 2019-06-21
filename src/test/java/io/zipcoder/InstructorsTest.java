@@ -5,32 +5,25 @@ import org.junit.Test;
 
 public class InstructorsTest {
     @Test
-    public void testInstructors1(){
-         // Given
-        Instructors i = Instructors.getInstance();
+    public void testInstructorsSingleton(){
+        // Given
+        Instructors instructors = Instructors.getInstance();
+        Person kris = instructors.findById(50l);
+        Person dolio = instructors.findById(51l);
+        Person wilhem = instructors.findById(52l);
+        Person froilan = instructors.findById(53l);
         // When
-        String actual = i.findById(50l).getName();
+        Boolean containsKris = instructors.contains(kris);
+        Boolean containsDolio = instructors.contains(dolio);
+        Boolean containsWilhem = instructors.contains(wilhem);
+        Boolean containsFroilan = instructors.contains(froilan);
         // Assert
-        Assert.assertEquals("Kris", actual);
+        Assert.assertTrue(containsDolio && containsKris && containsWilhem && containsFroilan);
     }
 
     @Test
-    public void testInstructors2(){
-        // Given
-        Instructors i = Instructors.getInstance();
-        // When
-        String actual = i.findById(51l).getName();
-        // Assert
-        Assert.assertEquals("Dolio", actual);
-    }
-
-    @Test
-    public void testInstructors3(){
-        // Given
-        Instructors i = Instructors.getInstance();
-        // When
-        String actual = i.findById(52l).getName();
-        // Assert
-        Assert.assertEquals("Wilhem", actual);
+    public void testInstructorsSingleton2(){
+        People<Student> p = Students.getInstance();
+        System.out.println(p.toArray().toString());
     }
 }
