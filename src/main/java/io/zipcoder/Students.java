@@ -1,6 +1,8 @@
 package io.zipcoder;
 
-public class Students extends People{
+import io.zipcoder.interfaces.Learner;
+
+public class Students extends People {
 
     private static final Students INSTANCE = new Students();
 

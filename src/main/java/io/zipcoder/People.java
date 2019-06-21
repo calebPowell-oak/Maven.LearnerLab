@@ -46,6 +46,10 @@ public class People implements Iterable<Person> {
         }
     }
 
+    public Integer size(){
+        return personList.size();
+    }
+
     public void removeAll(){
         personList.clear();
     }
